@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>6 String King</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static  'font-awesome/css/font-awesome.min.css' %}"
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -37,6 +37,14 @@
                 <li><a href="{% url 'registration' %}">Register</a></li>
                 <li><a href="{% url 'login' %}">Log In</a></li>
             {% endif %}
+            <li>
+                <a href="{% url 'view_cart' %}">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    {% if product_count > 0 %}
+                        <label class="badge badge-warning">{{ product_count }}</label>
+                    {% endif %}
+                </a>
+            </li>
         </div>
     </div>
 </nav>
@@ -51,6 +59,12 @@
     </div>
 {% endif %}
 <div class="container">
+    <div class="display">
+        <form action="{% url 'search' %}" method="get">
+            <input type="text" name="q">
+            <button type="submit">Search</button>
+        </form>
+    </div>
     {% block content %} {% endblock %}
 </div>
 
