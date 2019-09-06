@@ -20,7 +20,7 @@ def add_to_cart(request, id):
     return redirect(reverse('index'))
 
 
-def adjust_cart(request):
+def adjust_cart(request, id):
     """ This view adjusts the qantity of the specified product to the specified amount
     """
     quantity = int(request.POST.get('quantity'))
