@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'products',
     'home',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -133,5 +134,8 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
