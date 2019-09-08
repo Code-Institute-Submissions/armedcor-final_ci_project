@@ -16,8 +16,7 @@
 
     <div class="row">
         {% for item in cart_items %}
-
-            <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display card">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 card" style="width: 12rem">
                 <div class="card-body">
                     <img class="card-img-top" src="{{ MEDIA_URL }}{{ item.product.image }}">
                     <div class="caption">

@@ -30,6 +30,14 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <div class="container">
+        <div class="display">
+            <form action="{% url 'search' %}" method="get">
+                <input type="text" name="q">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             {% if user.is_authenticated %}
@@ -60,15 +68,9 @@
         </div>
     </div>
 {% endif %}
-<div class="container">
-    <div class="display">
-        <form action="{% url 'search' %}" method="get">
-            <input type="text" name="q">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    {% block content %} {% endblock %}
-</div>
+
+{% block content %} {% endblock %}
+
 
 
 <footer>
