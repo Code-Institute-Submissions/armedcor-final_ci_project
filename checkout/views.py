@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import MakePaymentForm, OrderForm
-from .models import Order, OrderLineItem
+from .models import OrderLineItem
 from django.conf import settings
 from django.utils import timezone
 from products.models import Product
 import stripe
+
+# Create your views here.
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -19,9 +21,7 @@ def checkout(request):
 
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
-            """commit=False holds off sending the form to stripe until we add some more information"""
             order.date = timezone.now()
-            """Now we save the order"""
             order.save()
 
             cart = request.session.get('cart', {})
@@ -44,7 +44,7 @@ def checkout(request):
                     card=payment_form.cleaned_data['stripe_id'],
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined")
+                messages.error(request, "Your card has been declined!")
 
             if customer.paid:
                 messages.error(request, "You have successfully paid")
@@ -55,7 +55,6 @@ def checkout(request):
         else:
             print(payment_form.errors)
             messages.error(request, "We were unable to take a payment with that card!")
-
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
