@@ -3,6 +3,8 @@
 # Six String King
 
 A fictional High end electric guitar website focusing primarily on Gibson Les Paul Guitars.
+
+A live version of the site can be found [here](https://six-string-king.herokuapp.com/)
  
 ## UX
  
